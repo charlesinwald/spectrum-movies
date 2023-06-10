@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDetail from '../types/movieDetail';
+import './MovieDetailPage.css';
 
 const formatDuration = (durationInSeconds: number) => {
   const hours = Math.floor(durationInSeconds / 3600);
@@ -34,6 +35,10 @@ const MovieDetailPage = () => {
     fetchMovieDetails();
   }, [id]);
 
+  const handleImageError = (event: any) => {
+    event.target.src = `${process.env.PUBLIC_URL}/heroes/defaultImage.jpeg`;
+  };
+
   if (!movie) {
     return <div>Loading movie details...</div>;
   }
@@ -41,26 +46,29 @@ const MovieDetailPage = () => {
   const { title, genres, releaseYear, description, duration } = movie;
 
   return (
-    <div>
+    <div className="movie-detail-page">
+      <img
+        src={`${process.env.PUBLIC_URL}/heroes/${movie.id}.jpeg`}
+        alt={movie.title}
+        onError={handleImageError}
+      />
       <h2>{title}</h2>
-      <div>
-        <div>
-          <strong>Genres: </strong>
-              {genres.join(', ')}
+      <div className="genres">
+        <strong>Genres: </strong>
+        {genres.join(', ')}
       </div>
-      </div>
-      <div>
+      <div className="release-year">
         <strong>Release Year: </strong>
         {releaseYear}
       </div>
-      <div>
+      <div className="description">
         <strong>Description: </strong>
         {description}
       </div>
-      <div>
+      <div className="duration">
         <strong>Duration: </strong>
         {formatDuration(duration)}
-        </div>
+      </div>
     </div>
   );
 };

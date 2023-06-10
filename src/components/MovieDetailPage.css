@@ -1,0 +1,34 @@
+.movie-detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .movie-detail-page img {
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .movie-detail-page h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .movie-detail-page .genres {
+    margin-bottom: 10px;
+  }
+  
+  .movie-detail-page .release-year {
+    margin-bottom: 10px;
+  }
+  
+  .movie-detail-page .description {
+    margin-bottom: 10px;
+  }
+  
+  .movie-detail-page .duration {
+    margin-bottom: 10px;
+  }
+  

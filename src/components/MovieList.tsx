@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Movie from '../types/movie';
+import './MovieList.css';
 
 const MovieList = (props: { movies: Movie[] }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,20 +22,20 @@ const MovieList = (props: { movies: Movie[] }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <ul>
         {currentMovies.map((movie) => (
-          <li key={movie.id}>
-            <img
-                src={`${process.env.PUBLIC_URL}/posters/${movie.id}.jpeg`}
-                alt={movie.title}
-                onError={handleImageError}
-                />
+          <li key={movie.id} className="movie-item">
             <a href={`/movies/${movie.id}`}>
-            <h2>{movie.title}</h2>
-            {movie.genres.map((genre) => (
-              <span key={genre}>{genre} </span>
-            ))}
+            <img
+              src={`${process.env.PUBLIC_URL}/posters/${movie.id}.jpeg`}
+              alt={movie.title}
+              onError={handleImageError}
+            />
+              <h2>{movie.title}</h2>
+              {movie.genres.map((genre) => (
+                <span key={genre}>{genre} </span>
+              ))}
             </a>
           </li>
         ))}
@@ -43,7 +44,7 @@ const MovieList = (props: { movies: Movie[] }) => {
 
       {/* Pagination */}
       {props.movies.length > moviesPerPage && (
-        <div>
+        <div className="pagination">
           {Array.from({ length: Math.ceil(props.movies.length / moviesPerPage) }).map(
             (_, index) => (
               <button
