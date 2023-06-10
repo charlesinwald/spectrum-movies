@@ -11,6 +11,9 @@ const MovieList = (props: {movies: Movie[]}) => <div>
                     ))}
                 </li>
             ))}
+            {
+                props.movies.length === 0 && <li>No movies found</li>
+            }
         </ul>
 </div>
 
