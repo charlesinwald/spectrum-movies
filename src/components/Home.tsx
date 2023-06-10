@@ -7,7 +7,7 @@ const Home = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
-
+    const [selectedGenre, setSelectedGenre] = useState<string>('All');
 
     // Fetch movies data from the API
     useEffect(() => {
@@ -31,26 +31,34 @@ const Home = () => {
     }
   };
 
-  // Apply search filter to movies
   useEffect(() => {
-    filterMoviesBySearch();
-  }, [searchQuery]);
-
-  const filterMoviesBySearch = () => {
-    if (searchQuery.trim() === '') {
-      setFilteredMovies(movies);
-    } else {
-      const filtered = movies.filter(movie =>
-        movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+    filterMovies();
+  }, [searchQuery, selectedGenre]);
+  
+  const filterMovies = () => {
+    let filtered = movies;
+  
+    if (searchQuery.trim() !== '') {
+      filtered = filtered.filter(
+        (movie) =>
+          movie.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setFilteredMovies(filtered);
     }
-  };    
+  
+    if (selectedGenre !== 'All') {
+      filtered = filtered.filter((movie) =>
+        movie.genres.includes(selectedGenre)
+      );
+    }
+  
+    setFilteredMovies(filtered);
+  };
+  
 
 
 return <main>
     <div className="container">
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
         <MovieList movies={filteredMovies} />
     </div>
 </main>;
