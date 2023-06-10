@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-const Home = () => <h1>Home</h1>;
+import Home from './components/Home';
 
 const MovieDetail = () => <h1>Movie Detail</h1>;
 
