@@ -13,6 +13,11 @@ const MovieList = (props: { movies: Movie[] }) => {
   // Change the current page
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
+
+  const handleImageError = (event: any) => {
+    event.target.src = `${process.env.PUBLIC_URL}/defaultImage.jpeg`;
   };
 
   return (
@@ -20,7 +25,11 @@ const MovieList = (props: { movies: Movie[] }) => {
       <ul>
         {currentMovies.map((movie) => (
           <li key={movie.id}>
-            <img src={`${process.env.PUBLIC_URL}/posters/${movie.id}.jpeg`} alt={movie.title} />
+            <img
+                src={`${process.env.PUBLIC_URL}/posters/${movie.id}.jpeg`}
+                alt={movie.title}
+                onError={handleImageError}
+                />
             <a href={`/movies/${movie.id}`}>
             <h2>{movie.title}</h2>
             {movie.genres.map((genre) => (
