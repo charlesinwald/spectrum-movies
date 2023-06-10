@@ -20,6 +20,7 @@ const MovieList = (props: { movies: Movie[] }) => {
       <ul>
         {currentMovies.map((movie) => (
           <li key={movie.id}>
+            <img src={`${process.env.PUBLIC_URL}/posters/${movie.id}.jpeg`} alt={movie.title} />
             <a href={`/movies/${movie.id}`}>
             <h2>{movie.title}</h2>
             {movie.genres.map((genre) => (
