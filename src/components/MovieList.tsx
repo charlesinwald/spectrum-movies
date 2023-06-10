@@ -20,10 +20,12 @@ const MovieList = (props: { movies: Movie[] }) => {
       <ul>
         {currentMovies.map((movie) => (
           <li key={movie.id}>
+            <a href={`/movies/${movie.id}`}>
             <h2>{movie.title}</h2>
             {movie.genres.map((genre) => (
               <span key={genre}>{genre} </span>
             ))}
+            </a>
           </li>
         ))}
         {props.movies.length === 0 && <li>No movies found</li>}
