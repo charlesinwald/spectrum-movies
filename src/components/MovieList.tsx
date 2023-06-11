@@ -18,7 +18,7 @@ const MovieList = (props: { movies: Movie[] }) => {
   };
 
   const handleImageError = (event: any) => {
-    event.target.src = `${process.env.PUBLIC_URL}/defaultImage.jpeg`;
+    event.target.src = `${process.env.PUBLIC_URL}/posters/defaultImage.jpeg`;
   };
 
   return (
